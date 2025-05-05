@@ -41,9 +41,9 @@ st.divider()
 st.subheader("Veri Önizlemesi")
 with st.expander('Tablo'):
     st.dataframe(filtered_df)
-
+#################################################################################
 st.divider()
-
+#################################################################################
 # # Özet İstatistikler
 # st.subheader("Özet İstatistikler")
 # st.write(filtered_df[["HALKAPUANI", "İSABET", "TOPLAM"]].describe())
