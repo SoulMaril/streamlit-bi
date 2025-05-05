@@ -156,8 +156,8 @@ ax2.tick_params(axis='both', which='major', labelsize=10)
 
 fig2.savefig("figures/boxplot_category.png", bbox_inches="tight")
 st.pyplot(fig2)
+#################################################################################
 st.divider()
-
 #################################################################################
 # Klüplere Göre Toplam Puan Box-and-Whisker (Kutu) Grafiği
 st.markdown("**Klüplere Göre Toplam Puan Puan Dağılım Grafiği**")
@@ -195,8 +195,8 @@ if not club_box_data.empty:
     st.markdown("*Not: Kulüp adları kısaltılmış olarak gösterilmektedir.*")
 else:
     st.info("Yeterli sayıda sporcusu olan kulüp bulunamadı.")
+#################################################################################
 st.divider()
-
 #################################################################################
 # 4. Her Kategori için Toplam Puan Histogramı (0 puan hariç)
 st.subheader("**Her Kategori için Toplam Puan Histogramı (Katılmayanlar Hariç)**")
@@ -226,7 +226,7 @@ for kategori in filtered_df["KATEGORİ"].unique():
     fig.savefig(f"figures/histogram_{kategori}.png", bbox_inches="tight")
     st.pyplot(fig)
     st.markdown(f"{kategori} kategorisinde (0 puan hariç) sporcuların toplam puanlarının dağılımı yukarıda gösterilmiştir.")
-
+#################################################################################
 st.divider()
 #################################################################################
 # Açıklamalar
