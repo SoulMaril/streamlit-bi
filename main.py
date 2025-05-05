@@ -11,13 +11,19 @@ os.makedirs("figures", exist_ok=True)
 # Styling
 colors = ['skyblue', 'plum']
 plt.style.use('seaborn-v0_8')
+plt.rcParams.update({'font.size': 10})  # Set default font size to 10
+
+# Logo ve başlık yerleşimi
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("https://tgtof.org.tr/wp-content/uploads/2019/08/TGTOF_navy.png", width=200)
 
 # Veriyi yükle
 df = pd.read_csv("dataset/2025salonfinal.csv")
 
 st.title("2025 Salon Finali Sonuç Analizi")
 st.markdown("""
-Bu gösterge paneli, 2025 Salon Finali spor müsabakası sonuçlarının genel bir görünümünü ve analizini sunar.
+Bu gösterge paneli, Türkiye Geleneksel Türk Okçuluğu 2025 Salon Puta Finali spor müsabakası sonuçlarının genel bir görünümünü ve analizini sunar.
 Veriyi filtreleyebilir, özet istatistikleri görebilir ve görselleştirmelerle içgörüler elde edebilirsiniz.
 """)
 
@@ -33,7 +39,9 @@ st.divider()
 #################################################################################
 # Veri Önizlemesi
 st.subheader("Veri Önizlemesi")
-st.dataframe(filtered_df)
+with st.expander('Tablo'):
+    st.dataframe(filtered_df)
+
 st.divider()
 
 # # Özet İstatistikler
@@ -44,10 +52,9 @@ st.divider()
 #################################################################################
 # Görselleştirmeler
 st.subheader("Görselleştirmeler")
-
 #################################################################################
 # Yarışmaya katılanlar ve katılmayanların sayısı
-st.markdown("**Yarışmaya Katılanlar ve Katılmayanlar**")
+# st.markdown("**Yarışmaya Katılanlar ve Katılmayanlar**")
 
 # Katılım durumunu belirle (TOPLAM puanı 0'dan büyük olanlar katılmış sayılır)
 participants = len(filtered_df[filtered_df["TOPLAM"] > 0])
@@ -60,10 +67,10 @@ labels = ['Katılanlar', 'Katılmayanlar']
 # Pie chart oluştur
 fig_part, ax_part = plt.subplots(figsize=(4, 4))
 ax_part.pie(participation_data, labels=labels, autopct='%1.1f%%', colors=colors)
-ax_part.set_title("Yarışmaya Katılım Oranı")
-
+ax_part.set_title("Yarışmaya Katılım Oranı", fontsize=10)
 fig_part.savefig("figures/participation_pie.png", bbox_inches="tight")
 st.pyplot(fig_part)
+#################################################################################
 st.divider()
 #################################################################################
 # Katılımcı Sayısı: Her şehirden kaç sporcu katılmış ve katılmamış?
@@ -94,10 +101,10 @@ participation_df = participation_df.drop('Toplam', axis=1)
 fig0, ax0 = plt.subplots(figsize=(16, 8))
 participation_df.plot(kind='bar', stacked=True, ax=ax0, color=colors, width=0.8)
 
-ax0.set_ylabel("Sporcu Sayısı")
-ax0.set_xlabel("İl")
-ax0.set_title("Her Şehirden Katılan ve Katılmayan Sporcu Sayısı", fontsize='medium')
-ax0.set_xticklabels(participation_df.index, rotation='vertical', ha="right", fontsize='medium')
+ax0.set_ylabel("Sporcu Sayısı", fontsize=10)
+ax0.set_xlabel("İl", fontsize=10)
+ax0.set_title("Her Şehirden Katılan ve Katılmayan Sporcu Sayısı", fontsize=10)
+ax0.set_xticklabels(participation_df.index, rotation='vertical', ha="right", fontsize=10)
 
 # Toplam sayıları göster
 for c in ax0.containers:
@@ -111,7 +118,9 @@ st.pyplot(fig0)
 
 #################################################################################
 # Detaylı veriyi tablo olarak göster
-st.dataframe(participation_df)
+with st.expander('Tablo'):
+    st.dataframe(participation_df)
+#################################################################################    
 st.divider()
 #################################################################################
 # 1b. Şehre Göre Toplam Puan Box-and-Whisker Grafiği
@@ -119,29 +128,31 @@ st.subheader("**Şehre Göre Ortalama Puan Dağılım Grafiği**")
 fig1b, ax1b = plt.subplots(figsize=(16, 8))
 # Sadece 0'dan büyük puanlar
 box_data = filtered_df[filtered_df["TOPLAM"] > 0]
+# Şehirleri alfabetik sırala
+box_data = box_data.sort_values("İL")
 sns.boxplot(x="İL", y="TOPLAM", data=box_data, ax=ax1b, hue='İL', palette='tab20', legend=False)
-ax1b.set_ylabel("Toplam Puan")
-ax1b.set_xlabel("İl")
+ax1b.set_ylabel("Toplam Puan", fontsize=10)
+ax1b.set_xlabel("İl", fontsize=10)
 # Get current ticks and labels
 ticks = ax1b.get_xticks()
 labels = [label.get_text() for label in ax1b.get_xticklabels()]
 # Set ticks and labels explicitly
 ax1b.set_xticks(ticks)
-ax1b.set_xticklabels(labels, rotation='vertical', ha="right")
+ax1b.set_xticklabels(labels, rotation='vertical', ha="right", fontsize=10)
 
 fig1b.savefig("figures/boxplot_city.png", bbox_inches="tight")
 st.pyplot(fig1b)
+#################################################################################
 st.divider()
-
 #################################################################################
 # 2. Kategoriye Göre Puan Dağılımı
 st.subheader("**Kategoriye Göre Puan Dağılımı**")
 fig2, ax2 = plt.subplots(figsize=(16, 8))
 box_data = filtered_df[filtered_df["TOPLAM"] > 0]
 sns.boxplot(x="KATEGORİ", y="TOPLAM", data=box_data, ax=ax2, hue='KATEGORİ', palette='tab20')
-plt.ylabel("Toplam Puan", fontsize='medium')
-plt.xlabel("KATEGORİ", fontsize='medium')
-ax2.tick_params(axis='both', which='major', labelsize=8)
+plt.ylabel("Toplam Puan", fontsize=10)
+plt.xlabel("KATEGORİ", fontsize=10)
+ax2.tick_params(axis='both', which='major', labelsize=10)
 
 fig2.savefig("figures/boxplot_category.png", bbox_inches="tight")
 st.pyplot(fig2)
@@ -169,14 +180,14 @@ club_box_data["KULÜB"] = club_box_data["KULÜB"].apply(shorten_club_name)
 if not club_box_data.empty:
     fig_club, ax_club = plt.subplots(figsize=(16, 8))
     sns.boxplot(x="KULÜB", y="TOPLAM", data=club_box_data, ax=ax_club, hue='KULÜB', palette='tab20')
-    ax_club.set_ylabel("Toplam Puan")
-    ax_club.set_xlabel("Kulüp")
+    ax_club.set_ylabel("Toplam Puan", fontsize=10)
+    ax_club.set_xlabel("Kulüp", fontsize=10)
     # Get current ticks and labels
     ticks = ax_club.get_xticks()
     labels = [label.get_text() for label in ax_club.get_xticklabels()]
     # Set ticks and labels explicitly
     ax_club.set_xticks(ticks)
-    ax_club.set_xticklabels(labels, rotation='vertical', ha="right")
+    ax_club.set_xticklabels(labels, rotation='vertical', ha="right", fontsize=10)
 
     fig_club.savefig("figures/boxplot_club.png", bbox_inches="tight")
     st.pyplot(fig_club)
@@ -206,11 +217,11 @@ for kategori in filtered_df["KATEGORİ"].unique():
                 fontsize='medium',
                 )
     
-    plt.xticks(np.arange(0, 110, step=5), rotation='vertical')
-    plt.yticks(np.arange(0, 10, step=10))
-    ax.set_title(f"{kategori} Kategorisi Puan Dağılımı")
-    ax.set_xlabel("Toplam Puan")
-    ax.set_ylabel("Sporcu Sayısı")
+    plt.xticks(np.arange(0, 110, step=5), rotation='vertical', fontsize=10)
+    plt.yticks(np.arange(0, 10, step=10), fontsize=10)
+    ax.set_title(f"{kategori} Kategorisi Puan Dağılımı", fontsize=10)
+    ax.set_xlabel("Toplam Puan", fontsize=10)
+    ax.set_ylabel("Sporcu Sayısı", fontsize=10)
 
     fig.savefig(f"figures/histogram_{kategori}.png", bbox_inches="tight")
     st.pyplot(fig)
