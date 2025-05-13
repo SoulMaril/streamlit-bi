@@ -78,6 +78,7 @@ st.markdown("""
 
 # Belge görüntüleme bölümü (PDF + Görsel)
 st.header("Belge Görüntüleyici (PDF / Görsel)")
+st.markdown(""" Dosya görüntülenemiyorsa aşağıdaki button ile indirebilirsiniz. """)
 
 allowed_extensions = ('.pdf', '.jpg', '.jpeg', '.png')
 document_files = [f for f in os.listdir("documents") if f.lower().endswith(allowed_extensions)]
