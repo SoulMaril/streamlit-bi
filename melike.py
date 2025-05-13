@@ -23,7 +23,7 @@ def clean_text(text):
 df_tahlil['Tahlil'] = df_tahlil['Tahlil'].apply(clean_text)
 
 st.title("Tahlil Verileri Grafik Sunumu")
-st.subheader("Zamana İçindeki Değişim")
+st.subheader("Zamana Bağlı Değişim")
 
 selected_test = st.selectbox("Bir tahlil seçin:", tests)
 
@@ -40,17 +40,19 @@ def draw_graph(tahlil):
         else:
             referans_alt = referans_ust = None
 
-        x = df.Tarih2.values
+        x = df.Tarih.values
         y = df.Sonuç.values
 
-        fig, ax = plt.subplots(figsize=(12, 6))
+        fig, ax = plt.subplots(figsize=(14, 6))
         ax.plot(x, y, marker='o', label='Sonuç')
         if referans_alt is not None and referans_ust is not None:
             ax.axhline(y=referans_alt, color='r', linestyle=':', label='Referans Alt')
             ax.axhline(y=referans_ust, color='r', linestyle=':', label='Referans Üst')
         ax.set_title(tahlil)
         ax.set_ylabel(f"{birim} ({referans})")
-        ax.set_xticklabels(x, rotation='vertical', fontsize='small')
+        # fig.autofmt_xdate()
+        ax.set_xticks(x)
+        ax.tick_params(axis='x', rotation=90, width=2)
         ax.legend()
         st.pyplot(fig)
     except Exception as e:
@@ -61,13 +63,14 @@ if selected_test:
 
 st.markdown("""
             ### Notlar: Hastanın genel seyri
-            * Tarihler tahlil günlerini gösteriyor. Eşit aralıklı değildir.
-            * Beyin Cerrahi Operasyon Tarihi 13 Ocak.
-            * Ameliyat sonrası kanamaya bağlı olarak 14 Ocak'ta tekrar operasyona alındı.
+            * Beyin Cerrahi Operasyon Tarihi 13 Ocak. Kemik metastazına bağlı olarak L3 omurunda fraktür.
+            * Ameliyat öncesi Edinimli Hemofili A tanısı kondu.
+            * Ameliyat sırasında kanı pıhtılaştırmak için Novo7 kullanıldı. Faktör 7.
+            * Buan rağmen operasyon sonrası kanamaya bağlı olarak 14 Ocak'ta tekrar operasyona alındı.
             * Sonrasında omiriliğine gelen kanama basısı neticesinde 2 diz altı kısmı hafif felç oldu. 
             * Fizik tedaviye başlandı. Yanıt verdi.
             * Hastalanmadan önce yürüteç desteği ile kendi başına yürüyebiliyordu.
-            * WBC ve bazı değer 19-20 Ocak gibi ani sapma gösteriyor. (Prednol Başlangıcı?)
+            * WBC ve bazı değer bir anda ani sapma gösteriyor.
             * Radyoterapi başlangıç tarihi 16 Mayıs. 10 Seans. Bitiş tarihi 2 Mayıs Cuma.
             * Tümör belirteçlerinde gerileme var. (CA 19-9, CEA)
             * Son Acil US raporunda: Klinik Bilgi:HASTANIN INSZIYON HATTINA APSE? TDRO; 
@@ -88,7 +91,22 @@ if document_files:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
             pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="900" type="application/pdf"></iframe>'
             st.markdown(pdf_display, unsafe_allow_html=True)
+            # İndirme düğmesi
+            st.download_button(
+                label="PDF dosyasını indir",
+                data=f,
+                file_name=selected_file,
+                mime="application/pdf"
+            )
     else:
         st.image(file_path, caption=selected_file, use_container_width=True)
+        # İndirme düğmesi
+        with open(file_path, "rb") as f:
+            st.download_button(
+                label="Görsel dosyasını indir",
+                data=f,
+                file_name=selected_file,
+                mime="image/jpeg" if selected_file.lower().endswith(('.jpg', '.jpeg')) else "image/png"
+            )
 else:
     st.info("Documents klasöründe PDF veya görsel dosyası bulunamadı.")
