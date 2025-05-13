@@ -22,9 +22,8 @@ def clean_text(text):
 
 df_tahlil['Tahlil'] = df_tahlil['Tahlil'].apply(clean_text)
 
-st.title("Tahlil Verileri Görselleştirme")
-
-
+st.title("Tahlil Verileri Grafik Sunumu")
+st.subheader("Zamana İçindeki Değişim")
 
 selected_test = st.selectbox("Bir tahlil seçin:", tests)
 
@@ -61,15 +60,17 @@ if selected_test:
     draw_graph(selected_test)
 
 st.markdown("""
-            ### Notlar
+            ### Notlar: Hastanın genel seyri
             * Tarihler tahlil günlerini gösteriyor. Eşit aralıklı değildir.
             * Beyin Cerrahi Operasyon Tarihi 13 Ocak.
             * Ameliyat sonrası kanamaya bağlı olarak 14 Ocak'ta tekrar operasyona alındı.
-            * Sonrasında omiriliğine gelen kanama basısı neticesinde 2 diz altı kısmı felç oldu. 
+            * Sonrasında omiriliğine gelen kanama basısı neticesinde 2 diz altı kısmı hafif felç oldu. 
             * Fizik tedaviye başlandı. Yanıt verdi.
             * Hastalanmadan önce yürüteç desteği ile kendi başına yürüyebiliyordu.
-            * WBC ve bazı değer 19-20 Ocak gibi ani sapma gösteriyor.
-            * Radyoterapi başlangıç tarihi 16 Mayıs. 10 Seans. Bitiş tarihi 2 Mayıs Cuma
+            * WBC ve bazı değer 19-20 Ocak gibi ani sapma gösteriyor. (Prednol Başlangıcı?)
+            * Radyoterapi başlangıç tarihi 16 Mayıs. 10 Seans. Bitiş tarihi 2 Mayıs Cuma.
+            * Tümör belirteçlerinde gerileme var. (CA 19-9, CEA)
+            * Son Acil US raporunda: Klinik Bilgi:HASTANIN INSZIYON HATTINA APSE? TDRO; 
             """)
 
 # Belge görüntüleme bölümü (PDF + Görsel)
