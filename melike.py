@@ -111,3 +111,91 @@ if document_files:
             )
 else:
     st.info("Documents klasöründe PDF veya görsel dosyası bulunamadı.")
+
+st.markdown("""
+            
+**1. Tam Kan Sayımı (He# ogram) ile İlgili Testler**
+* LYMPH# (KAN): Kandaki l*enfosit mutlak sayısı (bağışıklık hücreleri).
+* MCV (KAN): Ortalama eritrosit hacmi (kırmızı kan hücrelerinin büyüklüğü).
+* RDW-CV (KAN): Eritrosit dağılım genişliği (CV) (kırmızı kan hücrelerinin boyut çeşitliliği).
+* PLT (KAN): Trombosit sayısı (kan pıhtılaşmasında rol oynar).
+* NRBC% (KAN): Çekirdekli kırmızı kan hücrelerinin yüzdesi (normalde kanda bulunmaz, ciddi hastalık belirtisi).
+* NRBC# (KAN): Çekirdekli kırmızı kan hücrelerinin mutlak sayısı.
+* P-LCR (KAN): Büyük trombosit oranı (pıhtılaşma bozukluklarında önemli).
+* NEUT% (KAN): Nötrofil yüzdesi (enfeksiyon veya inflamasyon belirteci).
+* IG# (KAN): Olgunlaşmamış granülosit sayısı (enfeksiyon veya kemik iliği aktivitesi).
+* RBC (KAN): Eritrosit (kırmızı kan hücresi) sayısı.
+* MCH (KAN): Eritrosit başına düşen hemoglobin miktarı.
+* MCHC (KAN): Eritrosit hemoglobin konsantrasyonu.
+* MPV (KAN): Ortalama trombosit hacmi (pıhtılaşma bozuklukları ile ilişkili).
+* HGB (KAN): Hemoglobin düzeyi (kansızlık değerlendirmesi).
+* EO% (KAN): Eozinofil yüzdesi (alerji veya parazitik enfeksiyon).
+* IG% (KAN): Olgunlaşmamış granülosit yüzdesi.
+* MONO# (KAN): Monosit mutlak sayısı (bağışıklık hücreleri).
+* RDW-SD (KAN): Eritrosit dağılım genişliği (standart sapma).
+* PCT (KAN): Trombokrit (trombosit hacminin yüzdesi).
+* WBC (KAN): Beyaz kan hücresi (lökosit) sayısı.
+* NEUT# (KAN): Nötrofil mutlak sayısı.
+* HCT (KAN): Hematokrit (kanın hücresel kısmının oranı).
+* BASO% (KAN): Bazofil yüzdesi (nadir görülen alerjik reaksiyonlar).
+* BASO# (KAN): Bazofil mutlak sayısı.
+* PDW (KAN): Trombosit dağılım genişliği.
+* LYMPH% (KAN): Lenfosit yüzdesi.
+* MONO% (KAN): Monosit yüzdesi.
+* EO# (KAN): Eozinofil mutlak sayısı.
+
+**2. Koagülasyon (Pıhtılaşma) Testleri**
+* APTT: Aktive parsiyel tromboplastin zamanı (pıhtılaşma faktörleri).
+* Protrombin Zamanı (KOAGÜLOMETRE): Pıhtılaşma faktörlerinin aktivitesi.
+* PT(SEC) (KAN): Protrombin zamanı (saniye).
+* PT INR (KAN): INR (kan sulandırıcı ilaç takibi).
+* Trombin Zamanı: Fibrinojen aktivitesi.
+* Antitrombin 3 Aktivitesi: Doğal pıhtılaşma inhibitörü.
+* Fibrinojen: Pıhtılaşma proteini.
+* D-Dimer (Kantitatif): Pıhtı yıkım ürünü (tromboz belirteci).
+
+**3. Biyokimyasal Testler**
+* Bilirubin, Direkt/Total: Karaciğer fonksiyonu ve safra yolu hastalıkları.
+* Potasyum/Klorür/Sodyum: Elektrolit dengesi.
+* Laktat Dehidrogenaz (LDH): Doku hasarı belirteci.
+* Fosfor/Kalsiyum/Magnezyum: Kemik ve mineral metabolizması.
+* Lipaz/Amilaz: Pankreas fonksiyonu.
+* Alkalen Fosfataz (ALP)/GGT: Karaciğer ve safra yolu hastalıkları.
+* AST/ALT: Karaciğer hasarı belirteçleri.
+* Ürik Asit: Gut hastalığı.
+* Üre/Kreatinin: Böbrek fonksiyonu.
+* Protein/Albümin: Beslenme ve karaciğer fonksiyonu.
+* Glukoz: Kan şekeri.
+* CRP: Enflamasyon belirteci.
+* Prokalsitonin: Ciddi enfeksiyon belirteci.
+* NT-proBNP: Kalp yetmezliği belirteci.
+
+**4. Hormon ve Tümör Belirteçleri**
+* TSH/Serbest T3/Serbest T4: Tiroid fonksiyonu.
+* CEA: Kolon ve diğer kanserlerde tümör belirteci.
+* CA 15-3: Meme kanseri takibi.
+* Total HCG: Gebelik veya bazı kanserler.
+
+**5. Enfeksiyon Testleri**
+* HBsAg/Anti-HCV/Anti-HIV: Viral hepatit ve HIV taraması.
+* Anti-HBs: Hepatit B bağışıklık durumu.
+* Legionella/Chlamydia/Mycoplasma PCR: Bakteriyel enfeksiyonlar.
+* Varicella Zoster IgG: Suçiçeği bağışıklığı.
+
+**6. İdrar Analizi**
+* PRO/NIT/GLU/BLD/LEU/KET: Protein, nitrit, glukoz, kan, lökosit, keton varlığı.
+* SG/PH: İdrar yoğunluğu ve asit-baz dengesi.
+* WBC/RBC/BACT: İdrarda lökosit, eritrosit veya bakteri varlığı.
+
+**7. Kan Gazı ve Asit-Baz Dengesi**
+* pH/PCO2/PO2: Asit-baz ve oksijen durumu.
+* LAC (Laktat): Doku oksijenlenmesi.
+* HCO3/BE (Baz Eksikliği): Metabolik denge.
+
+**8. Diğer Özel Testler**
+* Ferritin/Demir/TDBK: Demir depoları ve anemiler.
+* Vitamin B12/Folat: Eksiklik anemileri.
+* Protein Elektroforezi: Multiple miyelom tanısı.
+* Lupus Antikoagülan/Anti-kardiyolipin: Otoimmün pıhtılaşma bozuklukları.
+
+""")
