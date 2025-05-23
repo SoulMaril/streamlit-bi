@@ -113,7 +113,7 @@ else:
     st.info("Documents klasöründe PDF veya görsel dosyası bulunamadı.")
 
 
-with st.siderbar:
+with st.sidebar:
     
     st.markdown("""
                 
