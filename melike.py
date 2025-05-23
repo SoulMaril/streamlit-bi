@@ -114,7 +114,7 @@ else:
 
 st.markdown("""
             
-**1. Tam Kan Sayımı (He# ogram) ile İlgili Testler**
+**1. Tam Kan Sayımı (Hemogram) ile İlgili Testler**
 * LYMPH# (KAN): Kandaki l*enfosit mutlak sayısı (bağışıklık hücreleri).
 * MCV (KAN): Ortalama eritrosit hacmi (kırmızı kan hücrelerinin büyüklüğü).
 * RDW-CV (KAN): Eritrosit dağılım genişliği (CV) (kırmızı kan hücrelerinin boyut çeşitliliği).
